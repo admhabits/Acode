@@ -3,8 +3,8 @@
 
 
 interface Acode {
-    exec(command: String, value?: any): boolean;
-    readonly exitAppMessage: String;
+    exec(command: string, value?: any): boolean;
+    readonly exitAppMessage: string;
     $menuToggler: HTMLElement;
     $editMenuToggler: HTMLElement;
 }
@@ -22,26 +22,26 @@ interface searchSettings {
 }
 
 interface Settings {
-    animation: Boolean;
+    animation: boolean;
     autosave: number;
     fileBrowser: fileBrowserSettings;
     maxFileSize: number;
-    filesNotAllowed: String[];
+    filesNotAllowed: string[];
     search: searchSettings;
-    lang: String;
-    fontSize: String;
-    editorTheme: String;
-    appTheme: String,
+    lang: string;
+    fontSize: string;
+    editorTheme: string;
+    appTheme: string,
     textWrap: boolean;
     softTab: boolean;
     tabSize: number;
     linenumbers: boolean;
-    beautify: Array<String>;
+    beautify: Array<string>;
     linting: boolean;
     previewMode: "browser" | "in app" | "none";
     showSpaces: boolean;
     openFileListPos: 'sidebar' | 'header';
-    quickTools: Boolean;
+    quickTools: boolean;
     editorFont: "fira code" | "default";
     vibrateOnTap: boolean;
     fullscreen: boolean;
@@ -54,36 +54,37 @@ interface Settings {
     scrollbarSize: number;
     confirmOnExit: boolean;
     showConsole: boolean;
-    customTheme: Map<String, String>;
+    customTheme: Map<string, string>;
     customThemeMode: 'light' | 'dark';
-    lineHeight: Number;
+    lineHeight: number;
+    checkFiles: boolean;
 }
 
 interface AppSettings {
     value: Settings;
-    update(settings?: Settings, showToast?: Boolean): Promise<void>;
-    update(showToast?: Boolean): Promise<void>;
+    update(settings?: Settings, showToast?: boolean): Promise<void>;
+    update(showToast?: boolean): Promise<void>;
     defaultSettings: Settings;
     reset(): void;
     onload: () => void;
     onsave: () => void;
     loaded: boolean;
-    isFileAllowed(ext: String): Boolean;
-    on(eventName: 'reset' | 'update', callback: (this: Settings, settings: Settings | String) => void): void;
-    off(eventName: 'reset' | 'update', callback: (this: Settings, settings: Settings | String) => void): void;
+    isFileAllowed(ext: string): boolean;
+    on(eventName: 'reset' | 'update', callback: (this: Settings, settings: Settings | string) => void): void;
+    off(eventName: 'reset' | 'update', callback: (this: Settings, settings: Settings | string) => void): void;
 }
 
 interface ActionStackOptions {
-    id: String;
+    id: string;
     action(): void;
 }
 
 interface ActionStack {
     push(options: ActionStackOptions): void;
     pop(): ActionStack;
-    remove(id: String): void;
-    has(id: String): Boolean;
-    length: Number;
+    remove(id: string): void;
+    has(id: string): boolean;
+    length: number;
     /**
      * Sets a mark to recently pushed action
      */
@@ -99,27 +100,27 @@ interface ActionStack {
 }
 
 interface storedFiles {
-    name: String;
-    data?: String;
-    url?: String;
-    fileUri?: String;
+    name: string;
+    data?: string;
+    url?: string;
+    fileUri?: string;
 }
 
 interface fileOptions {
-    name: String;
-    uri: String;
+    name: string;
+    uri: string;
 }
 
 interface NewFileOptions {
-    uri?: String;
-    text?: String;
+    uri?: string;
+    text?: string;
     render?: boolean;
     readonly?: boolean;
     cursorPos?: AceAjax.Position;
     type: 'regular' | 'git' | 'gist';
     record: Repo | Gist;
     onsave(): void;
-    isUnsaved: Boolean;
+    isUnsaved: boolean;
     mode: 'single'|'tree';
 }
 
@@ -127,7 +128,7 @@ interface Controls {
     start: HTMLSpanElement;
     end: HTMLSpanElement;
     menu: HTMLSpanElement;
-    fullContent: String;
+    fullContent: string;
     update: () => void;
     color: HTMLSpanElement;
     checkForColor(): void;
@@ -143,7 +144,7 @@ interface Scrollbar extends HTMLElement {
     /**Displays the scrollbar and hides after 3 seconds of inactivity. */
     render(): void;
     /**Resize the scrollbar dimension value. */
-    resize(render: Boolean): void;
+    resize(render: boolean): void;
     /**Callback function called when scrollbar is rendered. */
     onhide(): void;
     /**Callback function called when scrollbar is removed. */
@@ -159,27 +160,27 @@ interface File {
     /**
      * Location of the file on the current device or on remote server/device.
      */
-    uri: String;
+    uri: string;
     /**
      * Name of the file
      */
-    filename: String;
+    filename: string;
     /**
      * Unique ID of the file.
      */
-    id: String;
+    id: string;
     /**
      * If changed is changed this will be marked as true else false.
      */
-    isUnsaved: Boolean;
+    isUnsaved: boolean;
     /**
      * Path of the file.
      */
-    location: String;
+    location: string;
     /**
      * Checked if file can be edited.
      */
-    readOnly: Boolean;
+    readOnly: boolean;
     /**
      * Type of file.
      */
@@ -187,9 +188,9 @@ interface File {
     record: Repo & Gist,
     updateControls: function(): void;
     session: AceAjax.IEditSession;
-    editable: Boolean;
-    canWrite: Boolean;
-    uuid: String;
+    editable: boolean;
+    canWrite: boolean;
+    uuid: string;
     onsave(this: File): void;
     mode: 'single'|'tree';
     /**
@@ -199,7 +200,7 @@ interface File {
     /**
      * Checks if file is changed or not
      */
-    isChanged(): Promise<Boolean>;
+    isChanged(): Promise<boolean>;
 }
 
 interface FileStatus {
@@ -211,19 +212,19 @@ interface FileStatus {
     isVirtual: boolean;
     lastModified: number;
     length: number;
-    name: String;
-    type: String;
-    uri: String;
+    name: string;
+    type: string;
+    uri: string;
 }
 
 interface OriginObject {
-    origin: String;
-    query: String;
+    origin: string;
+    query: string;
 }
 
 interface URLObject {
-    url: String;
-    query: String;
+    url: string;
+    query: string;
 }
 
 
@@ -234,53 +235,53 @@ interface fileData {
 
 interface ExternalFs {
     readFile(): Promise<fileData>;
-    createFile(parent: String, filename: String, data: String): Promise<'SUCCESS'>;
-    createDir(parent: String, path: String): Promise<'SUCCESS'>;
-    deleteFile(filename: String): Promise<'SUCCESS'>;
-    writeFile(filename: String, content: String): Promise<'SUCCESS'>;
-    renameFile(src: String, newname: String): Promise<'SUCCESS'>;
-    copy(src: String, dest: String): Promise<'SUCCESS'>;
-    move(src: String, dest: String): Promise<'SUCCESS'>;
-    stats(src: String): Promise<FileStatus>;
-    uuid: String;
+    createFile(parent: string, filename: string, data: string): Promise<'SUCCESS'>;
+    createDir(parent: string, path: string): Promise<'SUCCESS'>;
+    deleteFile(filename: string): Promise<'SUCCESS'>;
+    writeFile(filename: string, content: string): Promise<'SUCCESS'>;
+    renameFile(src: string, newname: string): Promise<'SUCCESS'>;
+    copy(src: string, dest: string): Promise<'SUCCESS'>;
+    move(src: string, dest: string): Promise<'SUCCESS'>;
+    stats(src: string): Promise<FileStatus>;
+    uuid: string;
 }
 
 interface RemoteFs {
-    listDir(path: String): Promise<Array<FsEntry>>
-    readFile(path: String): Promise<ArrayBuffer | String>
-    createFile(filename: String, data: String): Promise;
-    createDir(path: String): Promise;
-    deleteFile(filename: String): Promise;
-    deleteDir(path: String): Promise;
-    writeFile(filename: String, content: String): Promise;
-    rename(src: String, newname: String): Promise;
-    copyTo(src: String, dest: String): Promise;
-    currentDirectory(): Promise<String>;
-    homeDirectory(): Promise<String>;
-    stats(src: String): Promise<FileStatus>;
+    listDir(path: string): Promise<Array<FsEntry>>
+    readFile(path: string): Promise<ArrayBuffer | string>
+    createFile(filename: string, data: string): Promise;
+    createDir(path: string): Promise;
+    deleteFile(filename: string): Promise;
+    deleteDir(path: string): Promise;
+    writeFile(filename: string, content: string): Promise;
+    rename(src: string, newname: string): Promise;
+    copyTo(src: string, dest: string): Promise;
+    currentDirectory(): Promise<string>;
+    homeDirectory(): Promise<string>;
+    stats(src: string): Promise<FileStatus>;
     /**
      * Resolve with true if file exists else resolve if false. Rejects if any error is generated.
      */
-    exists(): Promise<Boolean>;
-    origin: String;
+    exists(): Promise<boolean>;
+    origin: string;
     originObjec: OriginObject;
 }
 
 interface InternalFs {
-    copyTo(dest: String): Promise<String>;
-    moveTo(dest: String): Promise<String>;
-    listDir(path: String): Promise<Entry[]>;
-    createDir(parent: String, dirname: String): Promise<void>;
-    deleteFile(filename: String): Promise<void>;
-    readFile(filename: String): Promise<fileData>;
-    writeFile(filename: String, content: String, create: boolean, exclusive: boolean): Promise<void>;
-    renameFile(src: String, newname: String): Promise<void>;
-    stats(src: String): Promise<FileStatus>;
-    exists(): Promise<Boolean>;
+    copyTo(dest: string): Promise<string>;
+    moveTo(dest: string): Promise<string>;
+    listDir(path: string): Promise<Entry[]>;
+    createDir(parent: string, dirname: string): Promise<void>;
+    deleteFile(filename: string): Promise<void>;
+    readFile(filename: string): Promise<fileData>;
+    writeFile(filename: string, content: string, create: boolean, exclusive: boolean): Promise<void>;
+    renameFile(src: string, newname: string): Promise<void>;
+    stats(src: string): Promise<FileStatus>;
+    exists(): Promise<boolean>;
 }
 
 interface FsEntry {
-    url: String;
+    url: string;
     isDirectory: boolean;
     isFile: boolean;
 }
@@ -288,70 +289,70 @@ interface FsEntry {
 interface FileSystem {
     lsDir(): Promise<Array<FsEntry>>
     readFile(): Promise<ArrayBuffer>;
-    readFile(encoding: String): Promise<String>;
-    writeFile(content: String): Promise<void>;
-    createFile(name: String, data: String): Promise<void>,
-    createDirectory(name: String): Promise<void>;
+    readFile(encoding: string): Promise<string>;
+    writeFile(content: string): Promise<void>;
+    createFile(name: string, data: string): Promise<void>,
+    createDirectory(name: string): Promise<void>;
     deleteFile(): Promise<void>;
     deleteDir(): Promise<void>;
-    copyTo(dest: String): Promise<String>;
-    moveTo(dset: String): Promise<String>;
-    renameTo(newName: String): Promise<void>;
-    exists(): Promise<Boolean>;
+    copyTo(dest: string): Promise<string>;
+    moveTo(dset: string): Promise<string>;
+    renameTo(newName: string): Promise<void>;
+    exists(): Promise<boolean>;
     stats(): Promise<FileStatus>
 }
 
 interface externalStorageData {
-    path: String;
-    name: String;
-    origin: String;
+    path: string;
+    name: string;
+    origin: string;
 }
 
 interface elementContainer {
-    [key: String]: HTMLElement
+    [key: string]: HTMLElement
 }
 
 interface GistFile {
-    filename: String;
-    content: String;
+    filename: string;
+    content: string;
 }
 
 interface GistFiles {
-    [filename: String]: GistFile;
+    [filename: string]: GistFile;
 }
 
 interface Repo {
-    readonly sha: String;
-    name: String;
-    data: String;
-    repo: String;
-    path: String;
-    branch: 'master' | 'main' | String;
-    commitMessage: String;
-    setName(name: String): Promise<void>;
-    setData(data: String): Promise<void>;
+    readonly sha: string;
+    name: string;
+    data: string;
+    repo: string;
+    path: string;
+    branch: 'master' | 'main' | string;
+    commitMessage: string;
+    setName(name: string): Promise<void>;
+    setData(data: string): Promise<void>;
     repository: Repository;
 }
 
 interface Gist {
-    readonly id: String;
+    readonly id: string;
     readonly isNew: boolean;
     files: GistFiles;
-    setName(name: String, newName: String): Promise<void>;
-    setData(name: String, text: String): Promise<void>;
-    addFile(name: String): void;
-    removeFile(name: String): Promise<void>;
+    setName(name: string, newName: string): Promise<void>;
+    setData(name: string, text: string): Promise<void>;
+    addFile(name: string): void;
+    removeFile(name: string): Promise<void>;
 }
 
 interface GitRecord {
-    get(sha: String): Promise<Repo>;
+    get(sha: string): Promise<Repo>;
     add(gitFileRecord: Repo): void;
-    remove(sha: String): Repo;
-    update(sha: String, gitFileRecord: Repo): void;
+    remove(sha: string): Repo;
+    update(sha: string, gitFileRecord: Repo): void;
 }
 
 interface GistRecord {
-    get(id: String): Gist;
+    get(id: string): Gist;
     add(gist: any, isNew?: boolean): void;
     remove(gist: Gist): Gist;
     update(gist: Gist): void;
@@ -364,13 +365,13 @@ interface EditorScroll{
 }
 
 interface Manager {
-    addNewFile(filename: String, options: NewFileOptions): File;
-    getFile(checkFor: String | number | Repo | Gist, type: "id" | "name" | "uri" | "git" | "gist"): File;
-    switchFile(id: String): void;
-    removeFile(id: String | File, force: boolean): void;
+    addNewFile(filename: string, options: NewFileOptions): File;
+    getFile(checkFor: string | number | Repo | Gist, type: "id" | "name" | "uri" | "git" | "gist"): File;
+    switchFile(id: string): void;
+    removeFile(id: string | File, force: boolean): void;
     editor: AceAjax.Editor;
     activeFile: File;
-    onupdate(operation: String, ...args: any): void;
+    onupdate(operation: string, ...args: any): void;
     files: Array<File>;
     controls: Controls;
     state: 'blur' | 'focus';
@@ -384,7 +385,7 @@ interface Manager {
 }
 
 interface Strings {
-    [key: String]: String
+    [key: string]: string
 }
 
 interface Collaspable {
@@ -398,13 +399,13 @@ interface Collaspable {
 
 interface Folder {
     reload(): void;
-    url: String;
+    url: string;
     $node: Collaspable & HTMLElement;
     remove(): void;
     reloadOnResume: boolean;
     saveState: boolean;
-    title: String;
-    id: String;
+    title: string;
+    id: string;
 }
 
 interface Window {
@@ -414,19 +415,19 @@ interface Window {
 interface FileClipBoard {
     method: "copy" | "cut";
     type: "file" | "dir";
-    nodeId: String
+    nodeId: string
 }
 
 interface ThemeData {
-    name: String;
+    name: string;
     type: "light" | "dark";
     isFree: boolean;
-    darken: String;
-    primary: String;
+    darken: string;
+    primary: string;
 }
 
 interface AppThemeList {
-    [theme: String]: ThemeData
+    [theme: string]: ThemeData
 }
 
 interface Prompt{
@@ -441,64 +442,64 @@ interface Prompt{
 }
 
 interface Input {
-    id: String;
+    id: string;
     type: "text" | "numberic" | "tel" | "search" | "email" | "url" | "checkbox" | "radio" | "group" | "button";
     match: RegExp;
-    value: String;
-    name: String;
+    value: string;
+    name: string;
     required: boolean;
-    hints(options: Array<String>): void;
-    placeholder: String;
+    hints(options: Array<string>): void;
+    placeholder: string;
     disabled: boolean;
     onclick(this: HTMLElement): void;
 }
 
 interface FTPFile {
-    name: String;
-    link: String;
+    name: string;
+    link: string;
     type: number;
     size: number;
-    modifiedDate: String;
-    absolutePath: String
+    modifiedDate: string;
+    absolutePath: string
 }
 
 interface PathObject {
-    dir: String;
-    root: String;
-    base: String;
-    name: String;
-    ext: String;
+    dir: string;
+    root: string;
+    base: string;
+    name: string;
+    ext: string;
 }
 
 interface PathData {
-    url: String;
-    name: String;
-    isDirectory: Boolean;
-    type: String;
-    parent: Boolean;
+    url: string;
+    name: string;
+    isDirectory: boolean;
+    type: string;
+    parent: boolean;
 }
 
-interface String extends String {
+interface string extends string {
     /**
-     * Capitalize the String for e.g. converts "this is a String" to "This Is A String"
+     * Capitalize the string for e.g. converts "this is a string" to "This Is A string"
      */
-    capitalize(): String;
+    capitalize(): string;
     /**
      * Capitalize a character at given index for e.g.
      * ```js
-     * "this is a String".capitalize(0) //"This is a String"
+     * "this is a string".capitalize(0) //"This is a string"
      * ```
      */
-    capitalize(index): String;
+    capitalize(index): string;
     /**
-     * Returns hashcode of the String
+     * Returns hashcode of the string
      */
-    hashCode(): String;
+    hashCode(): string;
     /**
-     * Subtract the String passed in argument from the given String,
+     * Subtract the string passed in argument from the given string,
      * For e.g. ```"myname".subtract("my") //"name"```
      */
-    subtract(str: String): String;
+    subtract(str: string): string;
 }
 
 interface RecentPathData {
@@ -508,27 +509,27 @@ interface RecentPathData {
 
 interface RecentPathDataValue {
     opts: Object;
-    url: String;
+    url: string;
 }
 
 interface KeyBinding{
-    description: String;
-    key: String;
-    readOnly: Boolean;
-    action: String;
+    description: string;
+    key: string;
+    readOnly: boolean;
+    action: string;
 }
 
 interface Promotion{
-    image: String;
-    title: String;
-    description: String;
+    image: string;
+    title: string;
+    description: string;
 }
 
 /**
  * Returns fully decoded url
  * @param url 
  */
-declare function decodeURL(url: String): String;
+declare function decodeURL(url: string): string;
 
 /**
  * App settings
@@ -537,7 +538,7 @@ declare var appSettings: AppSettings;
 /**
  * language of the app
  */
-declare var lang: String;
+declare var lang: string;
 /**
  * Predefined strings for language support
  */
@@ -548,40 +549,40 @@ declare var strings: Strings;
 declare var Acode: Acode;
 declare var AceMouseEvent: any;
 
-declare var ASSETS_DIRECTORY: String;
-declare var CACHE_STORAGE: String;
-declare var DATA_STORAGE: String;
+declare var ASSETS_DIRECTORY: string;
+declare var CACHE_STORAGE: string;
+declare var DATA_STORAGE: string;
 declare var DOES_SUPPORT_THEME: boolean;
 declare var IS_FREE_VERSION: boolean;
-declare var KEYBINDING_FILE: String;
-declare var ANDROID_SDK_INT: Number;
+declare var KEYBINDING_FILE: string;
+declare var ANDROID_SDK_INT: number;
 
 declare var modelist: any;
 declare var beautify: any;
 declare var intent: any;
 
 declare var $placeholder: HTMLElement;
-declare var pageCount: Number;
-declare var saveTimeout: Number;
+declare var pageCount: number;
+declare var saveTimeout: number;
 declare var promotion: Promotion;
-declare var appStarted: Boolean;
-declare var defaultKeyBindings: Map<String, KeyBinding>;
-declare var customKeyBindings: Map<String, KeyBinding>;
+declare var appStarted: boolean;
+declare var defaultKeyBindings: Map<string, KeyBinding>;
+declare var customKeyBindings: Map<string, KeyBinding>;
 declare var ace: AceAjax;
 declare var actionStack: ActionStack;
 declare var addedFolder: Array<Folder>;
 declare var app: HTMLBodyElement;
 declare var editorManager: Manager;
 declare var fileClipBoard: FileClipBoard;
-declare var freeze: Boolean;
+declare var freeze: boolean;
 declare var gitRecord: GitRecord;
 declare var gistRecord: GistRecord;
-declare var gitRecordFile: String;
-declare var gistRecordFile: String;
+declare var gitRecordFile: string;
+declare var gistRecordFile: string;
 declare var root: HTMLDivElement;
-declare var saveInterval: Number;
+declare var saveInterval: number;
 declare var toastQueue: Array<HTMLElement>;
-declare var __sftpBusy: Boolean;
+declare var __sftpBusy: boolean;
 declare var __sftpTaskQueue: Array<()=>void>;
-declare var keyBindings: (name: String)=>String;
-declare var toast: (String)=>void;
+declare var keyBindings: (name: string)=>string;
+declare var toast: (string)=>void;

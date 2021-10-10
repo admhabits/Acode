@@ -22,9 +22,6 @@
     "cordova-plugin-ftp": {
       "PACKAGE_NAME": "com.foxdebug.acode"
     },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.foxdebug.acode"
-    },
     "cordova-plugin-intent": {
       "PACKAGE_NAME": "com.foxdebug.acode"
     },
@@ -50,6 +47,9 @@
       "PACKAGE_NAME": "com.foxdebug.acode"
     },
     "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.foxdebug.acode"
+    },
+    "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.foxdebug.acode"
     }
   },
